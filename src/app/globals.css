@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: #06090F;
+  --color-bg-card: rgba(255, 255, 255, 0.03);
+  --color-bg-card-solid: #0A0E15;
+  --color-bg-card-hover: rgba(255, 255, 255, 0.06);
+  --color-gold: #C8A84B;
+  --color-gold-light: #D4A843;
+  --color-gold-dim: rgba(200, 168, 75, 0.2);
+  --color-gold-glow: rgba(200, 168, 75, 0.15);
+  --color-text: #F5F5F5;
+  --color-text-muted: #8B8B8B;
+  --color-text-dim: #555555;
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-hover: rgba(255, 255, 255, 0.12);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  position: relative;
+}
+
+/* Noise texture overlay for premium dark background */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Glow pulse animation */
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.animate-glow {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+/* Gold shimmer text effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-gold) 0%,
+    #E8D08A 25%,
+    var(--color-gold) 50%,
+    #E8D08A 75%,
+    var(--color-gold) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Gradient text utility */
+.gradient-text-gold {
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light), #E8D08A);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Section divider glow - disabled for seamless look */
+.section-divider {
+  position: relative;
+}
+
+/* Glass card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Gradient border for pricing card */
+.gradient-border {
+  position: relative;
+  background: var(--color-bg);
+  border-radius: 1.25rem;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--color-gold), rgba(200, 168, 75, 0.3), var(--color-gold));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+/* Button glow */
+.btn-glow {
+  box-shadow: 0 0 20px rgba(200, 168, 75, 0.15), 0 0 40px rgba(200, 168, 75, 0.05);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 25px rgba(200, 168, 75, 0.25), 0 0 50px rgba(200, 168, 75, 0.1);
+}
+
+/* Floating particles */
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes float-drift {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0.5);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(50vh) translateX(30px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) translateX(-20px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0 8px 3px rgba(200, 168, 75, 0.5), 0 0 20px 6px rgba(200, 168, 75, 0.2);
+}
+
+.particle:nth-child(1) { left: 8%; animation: float-up 10s 0s infinite; width: 5px; height: 5px; }
+.particle:nth-child(2) { left: 18%; animation: float-drift 12s 1s infinite; width: 3px; height: 3px; }
+.particle:nth-child(3) { left: 28%; animation: float-up 9s 3s infinite; width: 6px; height: 6px; }
+.particle:nth-child(4) { left: 38%; animation: float-drift 14s 0.5s infinite; width: 4px; height: 4px; }
+.particle:nth-child(5) { left: 48%; animation: float-up 11s 2s infinite; width: 5px; height: 5px; }
+.particle:nth-child(6) { left: 58%; animation: float-drift 13s 4s infinite; width: 3px; height: 3px; }
+.particle:nth-child(7) { left: 68%; animation: float-up 10s 1.5s infinite; width: 7px; height: 7px; }
+.particle:nth-child(8) { left: 78%; animation: float-drift 12s 3s infinite; width: 4px; height: 4px; }
+.particle:nth-child(9) { left: 88%; animation: float-up 11s 2.5s infinite; width: 5px; height: 5px; }
+.particle:nth-child(10) { left: 5%; animation: float-drift 15s 5s infinite; width: 3px; height: 3px; }
+.particle:nth-child(11) { left: 33%; animation: float-up 9s 6s infinite; width: 6px; height: 6px; }
+.particle:nth-child(12) { left: 53%; animation: float-drift 13s 4.5s infinite; width: 4px; height: 4px; }
+.particle:nth-child(13) { left: 73%; animation: float-up 10s 7s infinite; width: 5px; height: 5px; }
+.particle:nth-child(14) { left: 93%; animation: float-drift 11s 3.5s infinite; width: 3px; height: 3px; }
+.particle:nth-child(15) { left: 43%; animation: float-up 14s 1s infinite; width: 6px; height: 6px; }
+.particle:nth-child(16) { left: 63%; animation: float-drift 12s 6.5s infinite; width: 4px; height: 4px; }
+
+/* FAQ accordion smooth height */
+.faq-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.faq-content.open {
+  grid-template-rows: 1fr;
+}
+
+.faq-content > div {
+  overflow: hidden;
+}
+
+/* Connecting line for steps */
+.step-connector {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 32px);
+  right: calc(-50% + 32px);
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-gold), transparent);
+  transform: translateY(-50%);
+}
