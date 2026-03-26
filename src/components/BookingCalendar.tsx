@@ -149,11 +149,11 @@ export default function BookingCalendar() {
   /* ---- confirmation ---- */
   if (step === "done") {
     return (
-      <div className="glass-card rounded-2xl p-10 text-center max-w-md mx-auto">
-        <div className="w-16 h-16 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center mx-auto mb-5">
-          <Check className="w-8 h-8 text-gold" />
+      <div className="border border-white/[0.06] rounded-xl p-10 text-center">
+        <div className="w-14 h-14 rounded-full border border-gold/20 flex items-center justify-center mx-auto mb-5">
+          <Check className="w-7 h-7 text-gold" />
         </div>
-        <h3 className="text-2xl font-bold mb-3">Booking confirmed</h3>
+        <h3 className="text-xl font-bold mb-3">Booking confirmed</h3>
         <p className="text-text-muted leading-relaxed">
           Xavier or Jarrod will be in touch within 2 hours.
         </p>
@@ -167,16 +167,16 @@ export default function BookingCalendar() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="glass-card rounded-2xl p-8 mb-6">
-        <div className="flex items-center justify-between mb-8">
-          <h3 className="font-semibold text-sm text-text-muted uppercase tracking-wider">
+    <div>
+      <div className="border border-white/[0.06] rounded-xl p-6 sm:p-8">
+        <div className="flex items-center justify-between mb-6">
+          <h4 className="font-medium text-sm text-text-muted uppercase tracking-wider">
             {step === "date"
               ? "Select a date"
               : step === "time"
               ? "Select a time"
               : "Your details"}
-          </h3>
+          </h4>
           {(step === "time" || step === "form") && (
             <button
               onClick={() => {
@@ -198,16 +198,16 @@ export default function BookingCalendar() {
         {/* ---- calendar week view ---- */}
         {step === "date" && (
           <>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-5">
               <button
                 onClick={() => canGoPrev && setWeekOffset((w) => w - 1)}
                 disabled={!canGoPrev}
-                className="p-2.5 rounded-xl border border-border hover:border-border-hover disabled:opacity-30 transition-all duration-300 cursor-pointer disabled:cursor-default"
+                className="p-2 rounded-lg border border-white/[0.08] hover:border-white/[0.15] disabled:opacity-30 transition-all duration-300 cursor-pointer disabled:cursor-default"
                 aria-label="Previous week"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-4 h-4" />
               </button>
-              <span className="text-sm text-text-muted font-medium">
+              <span className="text-sm text-text-muted">
                 {weekDays[0].toLocaleDateString("en-AU", {
                   month: "short",
                   year: "numeric",
@@ -216,13 +216,13 @@ export default function BookingCalendar() {
               <button
                 onClick={() => canGoNext && setWeekOffset((w) => w + 1)}
                 disabled={!canGoNext}
-                className="p-2.5 rounded-xl border border-border hover:border-border-hover disabled:opacity-30 transition-all duration-300 cursor-pointer disabled:cursor-default"
+                className="p-2 rounded-lg border border-white/[0.08] hover:border-white/[0.15] disabled:opacity-30 transition-all duration-300 cursor-pointer disabled:cursor-default"
                 aria-label="Next week"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
-            <div className="grid grid-cols-5 gap-3">
+            <div className="grid grid-cols-5 gap-2">
               {weekDays.map((d, i) => {
                 const isPast = d < today;
                 const isSelected = selectedDate && isSameDay(d, selectedDate);
@@ -231,16 +231,18 @@ export default function BookingCalendar() {
                     key={i}
                     onClick={() => handleDateSelect(d)}
                     disabled={isPast}
-                    className={`flex flex-col items-center min-w-[64px] min-h-[64px] justify-center py-4 px-3 rounded-xl text-sm transition-all duration-300 cursor-pointer disabled:cursor-default ${
+                    className={`flex flex-col items-center py-3 px-2 rounded-lg text-sm transition-all duration-300 cursor-pointer disabled:cursor-default ${
                       isPast
                         ? "opacity-30"
                         : isSelected
-                        ? "bg-gradient-to-b from-gold to-gold-light text-bg font-semibold shadow-[0_0_20px_rgba(200,168,75,0.2)]"
-                        : "border border-border hover:border-border-hover"
+                        ? "bg-gold text-bg font-semibold"
+                        : "border border-white/[0.06] hover:border-white/[0.15]"
                     }`}
                   >
-                    <span className="text-xs mb-1.5 opacity-70">{DAY_NAMES[i]}</span>
-                    <span className="text-xl font-bold">{d.getDate()}</span>
+                    <span className="text-xs mb-1 opacity-70">
+                      {DAY_NAMES[i]}
+                    </span>
+                    <span className="text-lg font-bold">{d.getDate()}</span>
                   </button>
                 );
               })}
@@ -251,7 +253,7 @@ export default function BookingCalendar() {
         {/* ---- time slots ---- */}
         {step === "time" && selectedDate && (
           <>
-            <p className="text-sm text-text-muted mb-6 flex items-center gap-2">
+            <p className="text-sm text-text-muted mb-5 flex items-center gap-2">
               <Clock className="w-4 h-4 text-gold" />
               {formatDate(selectedDate)} (AEST)
             </p>
@@ -265,15 +267,15 @@ export default function BookingCalendar() {
                 );
               }
               return (
-                <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
                   {slots.map((slot) => (
                     <button
                       key={slot}
                       onClick={() => handleSlotSelect(slot)}
-                      className={`min-h-[52px] py-3 px-3 rounded-xl text-sm font-medium transition-all duration-300 cursor-pointer ${
+                      className={`py-2.5 px-2 rounded-lg text-sm font-medium transition-all duration-300 cursor-pointer ${
                         selectedSlot === slot
-                          ? "bg-gradient-to-b from-gold to-gold-light text-bg shadow-[0_0_20px_rgba(200,168,75,0.2)]"
-                          : "border border-border hover:border-gold/40 hover:text-gold"
+                          ? "bg-gold text-bg"
+                          : "border border-white/[0.06] hover:border-gold/40 hover:text-gold"
                       }`}
                     >
                       {formatSlot(slot)}
@@ -288,15 +290,15 @@ export default function BookingCalendar() {
         {/* ---- booking form ---- */}
         {step === "form" && selectedDate && selectedSlot && (
           <>
-            <p className="text-sm text-text-muted mb-8 flex items-center gap-2">
+            <p className="text-sm text-text-muted mb-6 flex items-center gap-2">
               <Clock className="w-4 h-4 text-gold" />
               {formatDate(selectedDate)} at {formatSlot(selectedSlot)} AEST
             </p>
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label
                   htmlFor="book-name"
-                  className="block text-sm text-text-muted mb-2"
+                  className="block text-sm text-text-muted mb-1.5"
                 >
                   Name
                 </label>
@@ -306,14 +308,14 @@ export default function BookingCalendar() {
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-white/[0.03] border border-white/[0.1] rounded-xl py-4 px-5 text-base text-text placeholder:text-text-dim focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/20 transition-all duration-300"
+                  className="w-full bg-white/[0.03] border border-white/[0.08] rounded-lg py-3 px-4 text-sm text-text placeholder:text-text-dim focus:outline-none focus:border-gold/50 transition-all duration-300"
                   placeholder="Your name"
                 />
               </div>
               <div>
                 <label
                   htmlFor="book-phone"
-                  className="block text-sm text-text-muted mb-2"
+                  className="block text-sm text-text-muted mb-1.5"
                 >
                   Phone
                 </label>
@@ -323,14 +325,14 @@ export default function BookingCalendar() {
                   required
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full bg-white/[0.03] border border-white/[0.1] rounded-xl py-4 px-5 text-base text-text placeholder:text-text-dim focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/20 transition-all duration-300"
+                  className="w-full bg-white/[0.03] border border-white/[0.08] rounded-lg py-3 px-4 text-sm text-text placeholder:text-text-dim focus:outline-none focus:border-gold/50 transition-all duration-300"
                   placeholder="04XX XXX XXX"
                 />
               </div>
               <div>
                 <label
                   htmlFor="book-email"
-                  className="block text-sm text-text-muted mb-2"
+                  className="block text-sm text-text-muted mb-1.5"
                 >
                   Email
                 </label>
@@ -340,12 +342,12 @@ export default function BookingCalendar() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-white/[0.03] border border-white/[0.1] rounded-xl py-4 px-5 text-base text-text placeholder:text-text-dim focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/20 transition-all duration-300"
+                  className="w-full bg-white/[0.03] border border-white/[0.08] rounded-lg py-3 px-4 text-sm text-text placeholder:text-text-dim focus:outline-none focus:border-gold/50 transition-all duration-300"
                   placeholder="you@example.com"
                 />
               </div>
               <fieldset>
-                <legend className="block text-sm text-text-muted mb-3">
+                <legend className="block text-sm text-text-muted mb-2">
                   Preferred contact method
                 </legend>
                 <div className="flex gap-5">
@@ -358,7 +360,7 @@ export default function BookingCalendar() {
                   ).map(([value, label]) => (
                     <label
                       key={value}
-                      className="flex items-center gap-2.5 cursor-pointer"
+                      className="flex items-center gap-2 cursor-pointer"
                     >
                       <input
                         type="radio"
@@ -376,7 +378,7 @@ export default function BookingCalendar() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full bg-gradient-to-r from-gold to-gold-light text-bg font-bold py-4 rounded-xl text-lg btn-glow transition-all duration-300 disabled:opacity-60 cursor-pointer mt-3"
+                className="w-full bg-gold text-bg font-semibold py-3.5 rounded-lg text-base btn-glow transition-all duration-300 disabled:opacity-60 cursor-pointer mt-2"
               >
                 {submitting ? "Booking..." : "Confirm Booking"}
               </button>

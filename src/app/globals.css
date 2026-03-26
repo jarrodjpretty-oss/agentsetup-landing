@@ -10,7 +10,7 @@
   --color-gold-dim: rgba(200, 168, 75, 0.2);
   --color-gold-glow: rgba(200, 168, 75, 0.15);
   --color-text: #F5F5F5;
-  --color-text-muted: #8B8B8B;
+  --color-text-muted: #9CA3AF;
   --color-text-dim: #555555;
   --color-border: rgba(255, 255, 255, 0.06);
   --color-border-hover: rgba(255, 255, 255, 0.12);
@@ -55,7 +55,7 @@ body::after {
   animation: glow-pulse 4s ease-in-out infinite;
 }
 
-/* Gold shimmer text effect */
+/* Gold shimmer text effect - used ONLY on hero phrase */
 @keyframes shimmer {
   0% {
     background-position: -200% center;
@@ -81,54 +81,7 @@ body::after {
   animation: shimmer 4s linear infinite;
 }
 
-/* Gradient text utility */
-.gradient-text-gold {
-  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light), #E8D08A);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Section divider glow - disabled for seamless look */
-.section-divider {
-  position: relative;
-}
-
-/* Glass card */
-.glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.glass-card:hover {
-  border-color: rgba(255, 255, 255, 0.12);
-}
-
-/* Gradient border for pricing card */
-.gradient-border {
-  position: relative;
-  background: var(--color-bg);
-  border-radius: 1.25rem;
-}
-
-.gradient-border::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  padding: 1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, var(--color-gold), rgba(200, 168, 75, 0.3), var(--color-gold));
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask-composite: xor;
-  pointer-events: none;
-}
-
-/* Button glow */
+/* Button glow - primary CTA only */
 .btn-glow {
   box-shadow: 0 0 20px rgba(200, 168, 75, 0.15), 0 0 40px rgba(200, 168, 75, 0.05);
   transition: box-shadow 0.3s ease, background 0.3s ease;
@@ -138,7 +91,7 @@ body::after {
   box-shadow: 0 0 25px rgba(200, 168, 75, 0.25), 0 0 50px rgba(200, 168, 75, 0.1);
 }
 
-/* Floating particles */
+/* Floating particles - hero only */
 @keyframes float-up {
   0% {
     transform: translateY(100vh) scale(0);
@@ -204,6 +157,10 @@ body::after {
 .particle:nth-child(14) { left: 93%; animation: float-drift 11s 3.5s infinite; width: 3px; height: 3px; }
 .particle:nth-child(15) { left: 43%; animation: float-up 14s 1s infinite; width: 6px; height: 6px; }
 .particle:nth-child(16) { left: 63%; animation: float-drift 12s 6.5s infinite; width: 4px; height: 4px; }
+.particle:nth-child(17) { left: 15%; animation: float-up 13s 8s infinite; width: 4px; height: 4px; }
+.particle:nth-child(18) { left: 82%; animation: float-drift 11s 5.5s infinite; width: 5px; height: 5px; }
+.particle:nth-child(19) { left: 25%; animation: float-up 12s 9s infinite; width: 3px; height: 3px; }
+.particle:nth-child(20) { left: 70%; animation: float-drift 14s 7.5s infinite; width: 6px; height: 6px; }
 
 /* FAQ accordion smooth height */
 .faq-content {
@@ -218,15 +175,4 @@ body::after {
 
 .faq-content > div {
   overflow: hidden;
-}
-
-/* Connecting line for steps */
-.step-connector {
-  position: absolute;
-  top: 50%;
-  left: calc(50% + 32px);
-  right: calc(-50% + 32px);
-  height: 1px;
-  background: linear-gradient(90deg, var(--color-gold), transparent);
-  transform: translateY(-50%);
 }
