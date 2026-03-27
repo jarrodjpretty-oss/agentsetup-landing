@@ -487,7 +487,7 @@ export default function Home() {
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-[-0.03em] leading-[1.0] mb-20">
                 Everything your PA&nbsp;does.
                 <br />
-                Nothing your PA&nbsp;forgets.
+                Without the&nbsp;sick&nbsp;days.
               </h2>
             </FadeIn>
             <StaggerChildren className="grid md:grid-cols-2 gap-x-20 gap-y-0">
