@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     "real estate CRM",
     "AgentSetup",
   ],
+  icons: {
+    icon: "/favicon.svg",
+  },
   openGraph: {
     title: "AgentSetup | AI Operations for Australian Real Estate Agents",
     description:
@@ -26,13 +29,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_AU",
     siteName: "AgentSetup",
+    url: "https://avaracollective.com",
+    images: [
+      {
+        url: "https://avaracollective.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "AgentSetup - Your AI ops team. Built by agents.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "AgentSetup | AI Operations for Australian Real Estate Agents",
     description:
       "Every lead that comes in after hours is a listing you lose to a faster agent. AgentSetup responds in 90 seconds, 24/7.",
+    images: ["https://avaracollective.com/og-image.png"],
   },
+  metadataBase: new URL("https://avaracollective.com"),
   robots: {
     index: true,
     follow: true,

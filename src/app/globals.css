@@ -1,19 +1,30 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-bg: #06090F;
+  /* Backgrounds */
+  --color-bg: #080808;
+  --color-bg-surface: #0d0d0d;
+  --color-bg-elevated: #111111;
   --color-bg-card: rgba(255, 255, 255, 0.03);
-  --color-bg-card-solid: #0A0E15;
-  --color-bg-card-hover: rgba(255, 255, 255, 0.06);
-  --color-gold: #C8A84B;
-  --color-gold-light: #D4A843;
-  --color-gold-dim: rgba(200, 168, 75, 0.2);
-  --color-gold-glow: rgba(200, 168, 75, 0.15);
-  --color-text: #F5F5F5;
-  --color-text-muted: #9CA3AF;
-  --color-text-dim: #555555;
+  --color-bg-card-solid: #0f0f0f;
+
+  /* Gold */
+  --color-gold: #C9A84C;
+  --color-gold-bright: #E8C56A;
+  --color-gold-muted: rgba(201, 168, 76, 0.4);
+  --color-gold-glow: rgba(201, 168, 76, 0.12);
+  --color-gold-subtle: rgba(201, 168, 76, 0.06);
+
+  /* Text */
+  --color-text: #F0F0F0;
+  --color-text-muted: #888888;
+  --color-text-dim: #444444;
+
+  /* Borders */
   --color-border: rgba(255, 255, 255, 0.06);
   --color-border-hover: rgba(255, 255, 255, 0.12);
+
+  /* Font */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -28,7 +39,7 @@ body {
   position: relative;
 }
 
-/* Noise texture overlay for premium dark background */
+/* Film grain noise overlay */
 body::after {
   content: "";
   position: fixed;
@@ -41,28 +52,31 @@ body::after {
   background-size: 256px 256px;
 }
 
-/* Glow pulse animation */
+/* ── Scroll progress bar ── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--color-gold);
+  z-index: 100;
+  transform-origin: left;
+}
+
+/* ── Glow pulse ── */
 @keyframes glow-pulse {
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.6;
-  }
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
 }
 
 .animate-glow {
   animation: glow-pulse 4s ease-in-out infinite;
 }
 
-/* Gold shimmer text effect - used ONLY on hero phrase */
+/* ── Gold shimmer text ── */
 @keyframes shimmer {
-  0% {
-    background-position: -200% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
 }
 
 .gold-shimmer {
@@ -81,53 +95,41 @@ body::after {
   animation: shimmer 4s linear infinite;
 }
 
-/* Button glow - primary CTA only */
+/* ── Button glow ── */
 .btn-glow {
-  box-shadow: 0 0 20px rgba(200, 168, 75, 0.15), 0 0 40px rgba(200, 168, 75, 0.05);
-  transition: box-shadow 0.3s ease, background 0.3s ease;
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.15), 0 0 40px rgba(201, 168, 76, 0.05);
+  transition: box-shadow 0.3s ease, background 0.3s ease, transform 0.2s ease;
 }
 
 .btn-glow:hover {
-  box-shadow: 0 0 25px rgba(200, 168, 75, 0.25), 0 0 50px rgba(200, 168, 75, 0.1);
+  box-shadow: 0 0 25px rgba(201, 168, 76, 0.25), 0 0 50px rgba(201, 168, 76, 0.1);
+  transform: translateY(-1px);
 }
 
-/* Floating particles - hero only */
+/* ── Ghost button hover ── */
+.btn-ghost {
+  transition: all 0.3s ease;
+}
+
+.btn-ghost:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.03);
+}
+
+/* ── Floating particles ── */
 @keyframes float-up {
-  0% {
-    transform: translateY(100vh) scale(0);
-    opacity: 0;
-  }
-  5% {
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 0.6;
-  }
-  100% {
-    transform: translateY(-10vh) scale(1.2);
-    opacity: 0;
-  }
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  5% { opacity: 0.8; }
+  50% { opacity: 1; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
 }
 
 @keyframes float-drift {
-  0% {
-    transform: translateY(100vh) translateX(0) scale(0.5);
-    opacity: 0;
-  }
-  5% {
-    opacity: 0.9;
-  }
-  50% {
-    transform: translateY(50vh) translateX(30px) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-10vh) translateX(-20px) scale(0.8);
-    opacity: 0;
-  }
+  0% { transform: translateY(100vh) translateX(0) scale(0.5); opacity: 0; }
+  5% { opacity: 0.9; }
+  50% { transform: translateY(50vh) translateX(30px) scale(1); opacity: 1; }
+  100% { transform: translateY(-10vh) translateX(-20px) scale(0.8); opacity: 0; }
 }
 
 .particle {
@@ -138,7 +140,7 @@ body::after {
   background: var(--color-gold);
   opacity: 0;
   pointer-events: none;
-  box-shadow: 0 0 8px 3px rgba(200, 168, 75, 0.5), 0 0 20px 6px rgba(200, 168, 75, 0.2);
+  box-shadow: 0 0 8px 3px rgba(201, 168, 76, 0.5), 0 0 20px 6px rgba(201, 168, 76, 0.2);
 }
 
 .particle:nth-child(1) { left: 8%; animation: float-up 10s 0s infinite; width: 5px; height: 5px; }
@@ -162,7 +164,17 @@ body::after {
 .particle:nth-child(19) { left: 25%; animation: float-up 12s 9s infinite; width: 3px; height: 3px; }
 .particle:nth-child(20) { left: 70%; animation: float-drift 14s 7.5s infinite; width: 6px; height: 6px; }
 
-/* FAQ accordion smooth height */
+/* ── Marquee ── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ── FAQ accordion ── */
 .faq-content {
   display: grid;
   grid-template-rows: 0fr;
@@ -175,4 +187,50 @@ body::after {
 
 .faq-content > div {
   overflow: hidden;
+}
+
+/* ── Link underline grow ── */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-gold);
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ── Focus states ── */
+*:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* ── Scroll chevron bounce ── */
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+
+.scroll-indicator {
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .scroll-progress { display: none; }
 }
