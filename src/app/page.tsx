@@ -616,14 +616,14 @@ export default function Home() {
               <blockquote className="text-center">
                 <span className="text-gold text-6xl font-serif leading-none block mb-4" aria-hidden="true">&ldquo;</span>
                 <p className="text-2xl sm:text-[28px] lg:text-[32px] italic leading-[1.4] text-text-muted max-w-3xl mx-auto mb-8">
-                  We built AgentSetup because we saw agents drowning in admin while
-                  leads went cold. This system does the work that does not make you
-                  money, so you can focus on the work that does.
+                  I was checking my phone at my kid's soccer games. Replying to
+                  leads at dinner. Missing stuff constantly. Something had to
+                  change.
                 </p>
                 <footer>
                   <div className="text-text font-medium text-sm">Xavier Stevens</div>
                   <div className="text-xs text-text-dim mt-1">
-                    Co-founder, AgentSetup
+                    Area Specialist
                   </div>
                 </footer>
               </blockquote>
@@ -632,14 +632,14 @@ export default function Home() {
               <blockquote className="text-center">
                 <span className="text-gold text-6xl font-serif leading-none block mb-4" aria-hidden="true">&ldquo;</span>
                 <p className="text-2xl sm:text-[28px] lg:text-[32px] italic leading-[1.4] text-text-muted max-w-3xl mx-auto mb-8">
-                  I built this because I was tired of losing Friday night leads to
-                  whoever replied first. Now I wake up to appraisals booked while I
-                  was asleep.
+                  Friday night, 9pm, a lead comes in. By Saturday morning someone
+                  else has the appraisal. That was happening every week until we
+                  fixed it.
                 </p>
                 <footer>
                   <div className="text-text font-medium text-sm">Jarrod Pretty</div>
                   <div className="text-xs text-text-dim mt-1">
-                    Co-founder, AgentSetup
+                    Area Specialist
                   </div>
                 </footer>
               </blockquote>
