@@ -616,9 +616,9 @@ export default function Home() {
               <blockquote className="text-center">
                 <span className="text-gold text-6xl font-serif leading-none block mb-4" aria-hidden="true">&ldquo;</span>
                 <p className="text-2xl sm:text-[28px] lg:text-[32px] italic leading-[1.4] text-text-muted max-w-3xl mx-auto mb-8">
-                  I was replying to leads at 10pm on a Saturday night. Every
-                  weekend, same thing. Phone never stopped. Something had to
-                  change.
+                  Drowning in admin. Calls blowing up. Missed emails turning
+                  into missed listings. I was losing money every week and
+                  couldn't work any harder than I already was.
                 </p>
                 <footer>
                   <div className="text-text font-medium text-sm">Xavier Stevens</div>
