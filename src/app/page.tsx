@@ -616,8 +616,8 @@ export default function Home() {
               <blockquote className="text-center">
                 <span className="text-gold text-6xl font-serif leading-none block mb-4" aria-hidden="true">&ldquo;</span>
                 <p className="text-2xl sm:text-[28px] lg:text-[32px] italic leading-[1.4] text-text-muted max-w-3xl mx-auto mb-8">
-                  I was checking my phone at my kid's soccer games. Replying to
-                  leads at dinner. Missing stuff constantly. Something had to
+                  I was replying to leads at 10pm on a Saturday night. Every
+                  weekend, same thing. Phone never stopped. Something had to
                   change.
                 </p>
                 <footer>
