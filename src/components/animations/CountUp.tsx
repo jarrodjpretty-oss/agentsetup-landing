@@ -13,13 +13,8 @@ interface CountUpProps {
 export function CountUp({ target, suffix = '', prefix = '', duration = 0.8, className }: CountUpProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
-  const [display, setDisplay] = useState(target); // Start at target (SSR-safe, no flash of 0)
+  const [display, setDisplay] = useState(0);
   const hasAnimated = useRef(false);
-
-  useEffect(() => {
-    // Reset to 0 on mount so animation can play
-    setDisplay(0);
-  }, []);
 
   useEffect(() => {
     if (isInView && !hasAnimated.current) {
